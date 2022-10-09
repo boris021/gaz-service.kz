@@ -1,3 +1,73 @@
 //====================================================================================================
+.footer {
+	margin-top: 60px;
+	position: relative;
+	height: 415px;
+	display: flex;
+	align-items: center;
+
+	&__row {
+		display: flex;
+		align-items: center;
+	}
+
+	&__left {
+		max-width: 481px;
+		background: rgba(255, 255, 255, 0.8);
+		border-radius: 20px;
+		padding: 46px 60px;
+
+		@media (max-width:$mobile) {
+			padding: 20px;
+		}
+	}
+
+	&__maps {
+		font-weight: 500;
+		font-size: 17px;
+		@include adaptiveValue("margin-bottom", 30, 15);
+	}
+
+	&__phone {
+		display: flex;
+		align-items: center;
+		margin-bottom: 20px;
+
+		img {
+			margin-right: 8px;
+		}
+	}
+
+	&__mail {
+		display: flex;
+		align-items: center;
+		margin-bottom: 20px;
+
+		img {
+			margin-right: 8px;
+		}
+	}
+
+	&__social {
+		img {
+			margin-right: 10px;
+
+			:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+	&__right {}
+}
+
+.map {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
 
 //====================================================================================================
