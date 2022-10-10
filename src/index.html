@@ -324,8 +324,9 @@
 										допусками.</span>
 								</div>
 							</div>
-							<form action="" class="repair__right-form">
-								<input type="tel" name="tel" class="repair__input input" placeholder="Ваш номер телефона">
+							<form data-ajax data-popup-message="#form-message" class="repair__right-form" method="POST"
+								action="sendmail.php">
+								<input type="tel" name="tel" class="repair__input input tel" placeholder="Ваш номер телефона">
 								<button type="submit" class="repair__right-btn btn">Оставить заявку</button>
 							</form>
 						</div>

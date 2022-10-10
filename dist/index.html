@@ -10,6 +10,14 @@
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Open Graph Generated: a.pr-cy.ru -->
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Ремонт и установка газовых котлов в Алматы ">
+	<meta property="og:description" content="Специализируется на продаже, установке и ремонте газовых котлов">
+	<meta property="og:url" content="https://gaz-service.kz/">
+	<meta property="og:image" content="https://gaz-service.kz/main-img.png">
+	<meta property="og:site_name" content="Gas Service">
+	<meta property="og:locale" content="ru_RU">
 </head>
 
 <body>
@@ -45,11 +53,11 @@
 					<button type="button" class="menu__icon icon-menu"><span></span></button>
 					<nav class="menu__body">
 						<ul class="menu__list">
-							<li class="menu__item"><a href="" class="menu__link">Главная</a></li>
-							<li class="menu__item"><a href="" class="menu__link">Услуги</a></li>
-							<li class="menu__item"><a href="" class="menu__link">О нас</a></li>
-							<li class="menu__item"><a href="" class="menu__link">Проекты</a></li>
-							<li class="menu__item"><a href="" class="menu__link">Контакты</a></li>
+							<li class="menu__item"><a data-goto=".main" href="#" class="menu__link">Главная</a></li>
+							<li class="menu__item"><a data-goto=".service" href="#" class="menu__link">Услуги</a></li>
+							<li class="menu__item"><a data-goto=".about" href="#" class="menu__link">О нас</a></li>
+							<li class="menu__item"><a data-goto=".work" href="#" class="menu__link">Проекты</a></li>
+							<li class="menu__item"><a data-goto=".repair" href="#" class="menu__link">Контакты</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -366,8 +374,8 @@
 										допусками.</span>
 								</div>
 							</div>
-							<form action="" class="repair__right-form">
-								<input type="tel" name="tel" class="repair__input input" placeholder="Ваш номер телефона">
+							<form data-ajax data-popup-message="#form-message" class="repair__right-form" method="POST" action="sendmail.php">
+								<input type="tel" name="tel" class="repair__input input tel" placeholder="Ваш номер телефона">
 								<button type="submit" class="repair__right-btn btn">Оставить заявку</button>
 							</form>
 						</div>
@@ -407,19 +415,60 @@
 			</div>
 		</footer>
 	</div>
-	<!-- 
-<div id="popup" aria-hidden="true" class="popup">
-	<div class="popup__wrapper">
-		<div class="popup__content">
-			<button data-close type="button" class="popup__close">Закрыть</button>
-			<div class="popup__text">
+	<div id="form-message" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<div class="popup__text">
+					<div class="popup__text-title">Спасибо за вашу заявку!</div>
+					<div class="popup__text-subtitle">В ближайшие время с вами свяжется специалист компании,
+						который проконсультирует вас по всем вопросам.</div>
+				</div>
+				<button data-close type="button" class="popup__close-btn">Закрыть</button>
 			</div>
 		</div>
 	</div>
-</div>
- -->
-
 	<script src="js/app.min.js"></script>
+
+	<script>
+		window.addEventListener("DOMContentLoaded", function() {
+			[].forEach.call(document.querySelectorAll('.tel'), function(input) {
+				var keyCode;
+
+				function mask(event) {
+					event.keyCode && (keyCode = event.keyCode);
+					var pos = this.selectionStart;
+					if (pos < 3) event.preventDefault();
+					var matrix = "+7 (___) ___ ____",
+						i = 0,
+						def = matrix.replace(/\D/g, ""),
+						val = this.value.replace(/\D/g, ""),
+						new_value = matrix.replace(/[_\d]/g, function(a) {
+							return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+						});
+					i = new_value.indexOf("_");
+					if (i != -1) {
+						i < 5 && (i = 3);
+						new_value = new_value.slice(0, i)
+					}
+					var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+						function(a) {
+							return "\\d{1," + a.length + "}"
+						}).replace(/[+()]/g, "\\$&");
+					reg = new RegExp("^" + reg + "$");
+					if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value =
+						new_value;
+					if (event.type == "blur" && this.value.length < 5) this.value = ""
+				}
+
+				input.addEventListener("input", mask, false);
+				input.addEventListener("focus", mask, false);
+				input.addEventListener("blur", mask, false);
+				input.addEventListener("keydown", mask, false)
+
+			});
+
+		});
+	</script>
 </body>
 
 </html>
