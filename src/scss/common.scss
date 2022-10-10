@@ -9,8 +9,18 @@
 	text-transform: uppercase;
 	color: $whiteColor;
 	transition: all 0.3s ease 0s;
+	text-align: center;
+	display: inline-flex;
 
 	&:hover {
 		opacity: 0.8;
 	}
+}
+
+.title {
+	font-style: normal;
+	font-weight: 800;
+	@include adaptiveValue("font-size", 70, 26);
+	line-height: math.div(85, 70);
+	@include adaptiveValue("padding-bottom", 40, 20);
 }
